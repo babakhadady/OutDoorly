@@ -126,8 +126,8 @@ export default function ParkDetails() {
                     href={parkDetails.url}
                     target="_blank"
                     rel="noreferrer noopener"
-		  className={styles.link}
-		  underline="none">
+                    className={styles.link}
+                    underline="none">
                     View the park on National Parks
                   </Link>
                 </Typography>
