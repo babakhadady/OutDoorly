@@ -5,19 +5,6 @@ const path = require("path");
 const { getPagination } = require("../shared/pagination.js");
 const { paginateDataClosestParks } = require("../shared/pagination");
 
-// const allParksCoordsPath = path.join(
-//   __dirname,
-//   "../data/allParksCoordinates.json"
-// );
-// const allParksCoords = JSON.parse(fs.readFileSync(allParksCoordsPath));
-
-// const allParksCoords = await closestParksDAOS.fetchAllParksCoordinates();
-// console.log(allParksCoords);
-
-// const allParksCoords = JSON.parse(
-//   fs.readFileSync("../data/allParksCoordinates.json")
-// );
-
 let allParksCoords;
 
 async function main() {
@@ -79,35 +66,10 @@ function sortParksByDistanceHelper(closestParks) {
   return sortedParks;
 }
 
-// function makeCoordinatesFile() {
-//   let parkCoordinates = {
-//     ParkName: "",
-//     ParkID: "",
-//     Lat: "",
-//     Lon: "",
-//   };
-//   let allParksCoords = [];
-//   data.forEach((element) => {
-//     let parkCoordinates = {
-//       ParkName: element.fullName,
-//       ParkID: element.id,
-//       Lat: element.latitude,
-//       Lon: element.longitude,
-//     };
-//     allParksCoords.push(parkCoordinates);
-//   });
-//   fs.writeFileSync(
-//     "../data/allParksCoordinates.json",
-//     JSON.stringify(allParksCoords)
-//   );
-// }
-
 async function getParksByDistance(req, res) {
   try {
     const page = Number(req.query.page);
-    // console.log(page);
     const size = req.query.size;
-    // console.log(size);
     if (page - 1 < 0) {
       throw new Error(`Page number cannot be 0 or negative`);
     }
@@ -119,7 +81,6 @@ async function getParksByDistance(req, res) {
     const userState = req.query.state;
     const userRadius = req.query.radius;
     const sort = req.query.sortBy;
-    console.log(userCity);
 
     // Check if city or state is not provided in the request
     if (!userCity || !userState || !userRadius) {
@@ -129,7 +90,6 @@ async function getParksByDistance(req, res) {
     }
 
     const cityAndState = userCity + ", " + userState;
-    // console.log(cityAndState);
     const userCoordinates = await getGeoCode(cityAndState);
     const closestParks = await getClosestParks(
       allParksCoords,
@@ -150,7 +110,6 @@ async function getParksByDistance(req, res) {
 
     res.status(201).json(paginatedResult);
 
-    // console.log(closestParks);
   } catch (err) {
     console.log(err);
     res.status(500).json({ error: "Internal database error 3" });

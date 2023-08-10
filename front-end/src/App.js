@@ -45,12 +45,13 @@ function App() {
 
   function getDecodedToken() {
     if (isInLocalStorage(USER_SESSION)) {
-        dispatch(setUser(jwt(localStorage.getItem(USER_SESSION))));
+      dispatch(setUser(jwt(localStorage.getItem(USER_SESSION))));
     }
   }
 
   useEffect(() => {
     getDecodedToken();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

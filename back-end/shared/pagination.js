@@ -18,28 +18,9 @@ const paginateData = async (model, query, data, page, limit = 1) => {
   result.currentPage = page ? page : 1;
   result.totalPages = Math.ceil(result.count / limit);
 
-  console.log(result);
   return result;
 };
 
-
-// const paginateDataClosestParks = async (
-//   resultLength,
-//   data,
-//   page,
-//   limit = 1
-// ) => {
-//   const result = {
-//     data: data,
-//   };
-//   const totalCount = resultLength;
-//   result.count = totalCount;
-//   result.currentPage = page ? page : 1;
-//   result.totalPages = Math.ceil(result.count / limit);
-
-//   console.log(result);
-//   return result;
-// };
 
 const paginateDataClosestParks = async (
   unpaginatedData,
@@ -55,7 +36,6 @@ const paginateDataClosestParks = async (
   result.currentPage = page ? page : 1;
   result.totalPages = Math.ceil(result.count / limit);
 
-  console.log(result);
   return result;
 };
 

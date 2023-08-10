@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { getAuthURLRoute } from "../../routes";
-import { Button } from "@mui/material";
 import styles from "./login.module.scss";
 
 export const Login = () => {
@@ -18,8 +17,12 @@ export const Login = () => {
   }, []);
 
   return (
-      <a style={{ textDecoration: "none" }} href={authURL}>
-        LOGIN WITH GOOGLE
-      </a>
+    <a
+      style={{ textDecoration: "none" }}
+      href={authURL}
+      className={styles.googleLogin}
+    >
+      LOGIN WITH GOOGLE
+    </a>
   );
 };

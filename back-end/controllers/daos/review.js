@@ -14,7 +14,6 @@ async function getReviewDAOS(parkId) {
 }
 
 async function addReviewDAOS(newReview, parkId) {
-  console.log(newReview);
   const parks = await getModelForCollection("parksSchema");
   const park = await parks.findOne({ id: parkId });
 
@@ -36,7 +35,6 @@ async function addReviewDAOS(newReview, parkId) {
     { id: parkId },
     { $push: { userReviews: newReview } }
   );
-  //   console.log(result);
 }
 
 async function editReviewDAOS(editedReview, parkId) {
@@ -88,37 +86,3 @@ module.exports = {
   getReviewDAOS,
 };
 
-// const newReview = {
-//   comment: "yayy a comment",
-//   createdAt: new Date(),
-//   userName: "Samuel",
-//   userID: 1234,
-//   title: "my trip",
-//   experienceRating: 5,
-// };
-
-// addReview(newReview, "6DA17C86-088E-4B4D-B862-7C1BD5CF236Bt");
-
-// const newReview = {
-//   comment: "yayy a comment",
-//   createdAt: new Date(),
-//   userName: "Sammy",
-//   userID: 999,
-//   title: "my trip",
-//   experienceRating: 5,
-// };
-
-// addReviewDAOS(newReview, "6DA17C86-088E-4B4D-B862-7C1BD5CF236B");
-
-// const newReview2 = {
-//   comment: "ahhhhhchanged",
-//   createdAt: new Date(),
-//   userName: "Sammhghy",
-//   userID: 12345,
-//   title: "my trip",
-//   experienceRating: 5,
-// };
-
-// editReviewDAOS(newReview2, "6DA17C86-088E-4B4D-B862-7C1BD5CF236B");
-
-// deleteReviewDAOS(999, "6DA17C86-088E-4B4D-B862-7C1BD5CF236B");

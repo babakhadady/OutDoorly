@@ -15,14 +15,12 @@ async function fetchAllParksCoordinates() {
       Lon: parkObject.longitude,
     };
   });
-  // console.log(transformedParks);
   return transformedParks;
 }
 
 async function closestParksfromDB(Parks) {
   const parkIDs = Parks.map((obj) => obj.ParkID);
   const distances = Parks.map((obj) => obj.distance);
-  // console.log(parkIDs);
   const parks = await getModelForCollection("parksSchema");
   let parksResult = await parks.find({ id: { $in: parkIDs } });
 
@@ -41,23 +39,9 @@ async function closestParksfromDB(Parks) {
     return { ...parkObject, distance: distances[index] };
   });
 
-  // const query = parks
-  // .find(queryBuilder)
-  // .select(queryProjection)
-  // .sort(sorting)
-  // .limit(limit)
-  // .skip(offset)
-  // const data = await query.exec()
-
-  // const data = combined.slice(offset, offset + limit);
-
-  // const countQuery = combined.length;
-  // console.log(countQuery);
-  // const result = await paginateDataClosestParks(countQuery, data, page, limit);
 
   return combined;
 
-  // console.log(util.inspect(parksResult, { depth: 3 }));
 }
 
 module.exports = {

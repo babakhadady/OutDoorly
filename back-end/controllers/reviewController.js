@@ -14,9 +14,7 @@ const {
 const getReview = async (req, res) => {
   const parkId = req.params.id;
   const page = Number(req.query.page);
-  // console.log(page);
   const size = req.query.size;
-  // console.log(size);
 
   try {
     if (page - 1 < 0) {
@@ -35,7 +33,6 @@ const getReview = async (req, res) => {
       offset
     );
 
-    // console.log(paginatedResult);
 
     res.status(200).json(paginatedResult);
   } catch (error) {

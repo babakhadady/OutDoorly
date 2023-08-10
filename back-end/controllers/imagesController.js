@@ -17,7 +17,6 @@ const uploadHelper = (bucketName) =>
     storage: multerS3({
       s3: s3,
       bucket: bucketName,
-      // acl: "public-read",
       metadata: function (req, file, cb) {
         cb(null, { fieldName: file.fieldname });
       },
@@ -41,8 +40,6 @@ const uploadImage = async (req, res) => {
 
       const result = await DAOS.submitImages(req.params.id, req.file.location);
 
-      console.log(req.file);
-
       res.status(200).json({ data: req.file, imageData: result });
     });
   } catch (err) {
@@ -53,9 +50,6 @@ const uploadImage = async (req, res) => {
 
 const editImage = async (req, res) => {
   try {
-    // if (!req.params.id || req.params.id === ":id") {
-    //   return res.status(400).json({ error: "Image id param must be provided." });
-    // }
 
     if (!req.query.favouriteCount || !req.params.id) {
       return res.status(400).json({
@@ -67,7 +61,6 @@ const editImage = async (req, res) => {
       req.params.id,
       req.query.favouriteCount
     );
-    console.log(result);
     return res.status(200).json(result);
   } catch (err) {
     console.log(err);

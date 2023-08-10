@@ -31,7 +31,6 @@ function getGoogleAuthURL() {
     prompt: "consent",
     scope: scopes,
   });
-  console.log(instance)
 
   return instance
 }

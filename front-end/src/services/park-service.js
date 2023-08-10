@@ -87,7 +87,6 @@ export function getImage(id) {
 }
 
 export function postImage(id, image) {
-  console.log(image);
   var imageData = new FormData();
   imageData.append("image-upload", image);
   return axios({

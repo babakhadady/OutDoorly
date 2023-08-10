@@ -33,7 +33,6 @@ const parkSearchSlice = createSlice({
       state.searchMode = action.payload;
     },
     clearSearchResults: (state, action) => {
-      console.log("CLEARING RESULTS");
       state.searchMode = undefined;
       state.currPage = 1;
       state.searchCity = undefined;

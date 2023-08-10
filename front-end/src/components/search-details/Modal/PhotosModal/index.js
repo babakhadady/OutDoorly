@@ -13,10 +13,6 @@ export default function PhotosModal(props) {
   const uploadRef = useRef();
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    console.log(uploadedFiles);
-  }, [uploadedFiles]);
-
   function handleClose() {
     setVisible(false);
   }
@@ -87,7 +83,7 @@ export default function PhotosModal(props) {
             variant="contained"
             sx={{ mb: ".5rem" }}
           >
-            Upload Files
+            Upload File
           </Button>
           {displayUpload}
           <Button sx={{ mb: ".5rem" }} onClick={handleSubmit}>

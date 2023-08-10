@@ -40,9 +40,14 @@ export default function DistanceForm() {
   return (
     <form
       className={styles.formWrapper}
-      onSubmit={handleSubmit(onSubmitDistanceSearch)}>
+      onSubmit={handleSubmit(onSubmitDistanceSearch)}
+    >
+      <Typography variant="body" sx={{ mt: 5, mb: 1, fontWeight: "medium" }}>
+        An asterisk (*) indicates a required field
+      </Typography>
+
       <Typography variant="h5" sx={{ mt: 3, mb: 2, fontWeight: "medium" }}>
-        Which city are you located in?
+        Which city are you located in? *
       </Typography>
 
       <Controller
@@ -62,7 +67,7 @@ export default function DistanceForm() {
       )}
       <Typography variant="h5" sx={{ mt: 3, mb: 2, fontWeight: "medium" }}>
         {" "}
-        How far are you willing to travel? (in km)
+        How far are you willing to travel? (in km) *
       </Typography>
       <Controller
         control={control}

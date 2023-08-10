@@ -52,7 +52,6 @@ const getParksStateAndActivities = async (req, res) => {
       limit,
       page
     );
-    // console.log(result)
     return res.status(200).json(result);
   } catch (err) {
     console.log(err);
@@ -61,7 +60,6 @@ const getParksStateAndActivities = async (req, res) => {
 };
 
 const getParkDetails = async (req, res) => {
-  console.log(req.params.id);
 
   if (!req.params.id || req.params.id === ":id") {
     return res.status(400).json({ error: "Id param must be provided." });
@@ -71,7 +69,6 @@ const getParkDetails = async (req, res) => {
 
   try {
     const result = await DAOS.getParkDetails(objId);
-    // console.log(result);
 
     return res.status(200).json(result);
   } catch (err) {

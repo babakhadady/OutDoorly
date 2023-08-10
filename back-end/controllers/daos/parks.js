@@ -3,7 +3,6 @@ const {paginateData} = require('../../shared/pagination')
 const util = require("util");
 const fs = require("fs");
 
-// const { data } = JSON.parse(fs.readFileSync("../../data/allParks.json"));
 
 // ONLY RUN to populate local DB upon initialization of backend
 const populateLocaldatabase = async () => {
@@ -22,40 +21,6 @@ const populateLocaldatabase = async () => {
 // ONLY RUN to add fake reviews to db
 const addReviewsToDB = async () => {
   const model = await getModelForCollection("parksSchema");
-
-
-//  const parks = await model.find({});
-// const query = await model.updateMany(
-//           {},
-//           { $set: { userReviews: fakeReviews } }
-//         );
-//  console.log("Query ", query)
-  // const { data } = JSON.parse(
-  //   fs.readFileSync("../../data/allParksAmenities.json")
-  // );
-
-  // for (let amenities of data) {
-  //   // console.log(util.inspect(amenities, {showHidden: false, depth: null, colors: true}))
-  //   for (let amenity of amenities) {
-  //     let amenityName = amenity.name;
-  //     // console.log(util.inspect(amenityName, {showHidden: false, depth: null, colors: true}))
-  //     for (let p of amenity.parks) {
-  //       let parkCode = p.parkCode;
-  //       console.log(
-  //         util.inspect(parkCode, {
-  //           showHidden: false,
-  //           depth: null,
-  //           colors: true,
-  //         })
-  //       );
-  //       const query = await model.updateMany(
-  //         { parkCode: p.parkCode },
-  //         { $push: { amenities: amenityName } }
-  //       );
-  //       console.log(query);
-  //     }
-  //   }
-  // }
 }
 
 const addAmenitiesToDB = async () => {
@@ -66,10 +31,8 @@ const addAmenitiesToDB = async () => {
   );
 
   for (let amenities of data) {
-    // console.log(util.inspect(amenities, {showHidden: false, depth: null, colors: true}))
     for (let amenity of amenities) {
       let amenityName = amenity.name;
-      // console.log(util.inspect(amenityName, {showHidden: false, depth: null, colors: true}))
       for (let p of amenity.parks) {
         let parkCode = p.parkCode;
         console.log(
@@ -83,7 +46,6 @@ const addAmenitiesToDB = async () => {
           { parkCode: p.parkCode },
           { $push: { amenities: amenityName } }
         );
-        console.log(query);
       }
     }
   }
@@ -157,7 +119,6 @@ const getParkDetails = async (id) => {
     "id fullName parkCode description operatingHours weatherInfo latitude longitude images userImages userReviews entranceFees fees addresses designation topics url ammenities activities";
 
   const result = await parks.findById(id).select(queryProjection);
-  // console.log(result);
   return result;
 };
 
@@ -176,7 +137,6 @@ const submitImages = async (id, url) => {
 
   await result.save();
 
-  console.log(result.userImages);
   return result;
 };
 
@@ -193,7 +153,6 @@ const editImage = async (imageID, count) => {
     userImages: { $elemMatch: { _id: imageID } },
   });
 
-  // console.log(result.userImages);
   return result.userImages;
 };
 
@@ -206,7 +165,6 @@ const deleteImage = async (id) => {
     throw new Error(`No image found with ID ${id}`);
   }
 
-  console.log(image);
 };
 
 const retrieveImages = async (id) => {
@@ -217,8 +175,6 @@ const retrieveImages = async (id) => {
   if (!park) {
     throw new Error(`No image found with ID ${id}`);
   }
-
-  // console.log(park);
 
   if (park.userImages) {
     return park.userImages;
@@ -236,9 +192,3 @@ module.exports = {
   retrieveImages,
 };
 
-// getParks(["Shopping", "Food"], "CA");
-// populateLocaldatabase();
-// addAmenitiesToDB();
-// getParks(['Astronomy'], ['Bicycle - Rack'], "CA", 'desc');
-
-// addReviewsToDB();
